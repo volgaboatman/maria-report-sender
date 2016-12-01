@@ -9,7 +9,7 @@ public static void Run(string report, TraceWriter log)
 
     string fromEmail = "kirill@marya.ru";
     string toEmail = "volgaboatman@mail.ru";
-    int smtpPort = 587;
+    int smtpPort = 25; // 587
 
     bool smtpEnableSsl = true;
     string smtpHost = "smtp.bokov.net"; // your smtp host
