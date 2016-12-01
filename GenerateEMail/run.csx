@@ -68,8 +68,8 @@ public static void Run(string report, IQueryable<ReportFiles> tableBinding, Trac
     string toEmail = "volgaboatman@mail.ru";
     MailMessage mail = new MailMessage(fromEmail, toEmail)
     {
-        Subject = "Test";
-        Body = "Report";
+        Subject = "Test",
+        Body = "Report",
     }
 
     try
