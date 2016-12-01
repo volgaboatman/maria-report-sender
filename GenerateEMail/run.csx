@@ -9,7 +9,7 @@ public static void Run(string report, TraceWriter log)
 
     string fromEmail = "kirill@marya.ru";
     string toEmail = "volgaboatman@mail.ru";
-    int smtpPort = 25; //587;
+    int smtpPort = 587;
 
     bool smtpEnableSsl = false;
     string smtpHost = "smtp.bokov.net"; // your smtp host
@@ -29,6 +29,8 @@ public static void Run(string report, TraceWriter log)
     mail.Subject = message;
 
     mail.Body = message;
+
+    log.Verbose(mail.ToSting());
     try
     {
         client.Send(mail);
