@@ -9,9 +9,9 @@ public static void Run(string report, TraceWriter log)
 
     string fromEmail = "kirill@marya.ru";
     string toEmail = "volgaboatman@mail.ru";
-    int smtpPort = 25; //587;
+    int smtpPort = 587;
 
-    bool smtpEnableSsl = false;
+    bool smtpEnableSsl = true;
     string smtpHost = "smtp.bokov.net"; // your smtp host
     string smtpUser = "maria - hackfest@bokov.net"; // your smtp user
     string smtpPass = "puI83nd38"; // your smtp password
