@@ -13,8 +13,8 @@ public static void Run(string report, TraceWriter log)
 
     bool smtpEnableSsl = true;
     string smtpHost = "smtp.bokov.net"; // your smtp host
-    string smtpUser = "maria - hackfest@bokov.net"; // your smtp user
-    string smtpPass = "puI83nd38"; // your smtp password
+    string smtpUser = "bokov7"; // your smtp user
+    string smtpPass = "did9e0ev7sf7s"; // your smtp password
     string subject = "First email";
     string message = report;
 
