@@ -11,7 +11,7 @@
       "name": "tableBinding",
       "type": "table",
       "connection": "mariastorage2016_STORAGE",
-      "tableName": "ReportFiles",
+      "tableName": "reportfiles",
       "direction": "in"
     }
   ],
