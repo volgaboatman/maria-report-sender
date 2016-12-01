@@ -1,3 +1,5 @@
+#r "Microsoft.WindowsAzure.Storage"
+
 using System;
 using System.Net;
 using System.Net.Mail;
@@ -7,15 +9,19 @@ using Microsoft.Azure; // Namespace for CloudConfigurationManager
 using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
 using Microsoft.WindowsAzure.Storage.Table; // Namespace for Table storage types
 
-public static void Run(string report, TraceWriter log)
+public static void Run(string report, IQueryable<ReportFiles> tableBinding, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {report}");
-
+    foreach (ReportFiles reportFiles in tableBinding)
+    {
+        log.Info($"RowKey: {reportFiles.RowKey}");
+    }
+/*
     CloudStorageAccount storageAccount;
     storageAccount = CloudStorageAccount.Parse(
         "DefaultEndpointsProtocol=https;AccountName=mariastorage2016;AccountKey=ydy7HO72kF10+mFpENEGQ7STg5g3VrFaymtoW9eSgYPR9lATHLC32uphetb2xb+OWZu5ljCguLUNfBOFk5vrOQ==");
 
-    /*    CloudBlobClient blobClient;
+        CloudBlobClient blobClient;
         CloudBlobContainer container;
         blobClient = storageAccount.CreateCloudBlobClient();
         container = blobClient.GetContainerReference("telemetry");
@@ -29,6 +35,7 @@ public static void Run(string report, TraceWriter log)
 
         */
     // Create the table client.
+    /*
     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
     CloudTable table = tableClient.GetTableReference("reportfiles");
     TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>().

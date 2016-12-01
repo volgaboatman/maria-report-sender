@@ -6,6 +6,13 @@
       "direction": "in",
       "queueName": "reports-ready",
       "connection": "mariastorage2016_STORAGE"
+    },
+    {
+      "name": "tableBinding",
+      "type": "table",
+      "connection": "mariastorage2016_STORAGE",
+      "tableName": "ReportFiles",
+      "direction": "in"
     }
   ],
   "disabled": false
