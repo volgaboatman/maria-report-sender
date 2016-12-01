@@ -9,10 +9,16 @@ using Microsoft.Azure; // Namespace for CloudConfigurationManager
 using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
 using Microsoft.WindowsAzure.Storage.Table; // Namespace for Table storage types
 
-public static void Run(string report, IQueryable<reportfiles> tableBinding, TraceWriter log)
+public class ReportFiles : TableEntity
+{
+    public string url { get; set; }
+    public string OperatorMail { get; set; }
+}
+
+public static void Run(string report, IQueryable<ReportFiles> tableBinding, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {report}");
-    foreach (reportfiles files in tableBinding)
+    foreach (ReportFiles files in tableBinding)
     {
         log.Info($"RowKey: {files.RowKey}");
     }
