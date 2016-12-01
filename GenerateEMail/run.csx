@@ -61,7 +61,9 @@ public static void Run(string report, IQueryable<ReportFiles> tableBinding, Trac
     var client = new SmtpClient("smtp-mail.outlook.com", 587)
     {
         Credentials = new NetworkCredential("maria-hack@outlook.com", "Maria123"),
-        EnableSsl = true
+        EnableSsl = true,
+        UseDefaultCredentials = false,
+        DeliveryMethod = SmtpDeliveryMethod.Network,
     };
 
     string fromEmail = "kirill@marya.ru";
