@@ -1,4 +1,6 @@
 using System;
+using System.Net;
+using System.Net.Mail;
 
 public static void Run(string report, TraceWriter log)
 {
@@ -35,10 +37,5 @@ public static void Run(string report, TraceWriter log)
     catch (Exception ex)
     {
         log.Verbose(ex.ToString());
-        return req.CreateResponse(HttpStatusCode.InternalServerError, new
-        {
-            status = false,
-            message = "Message has not been sent. Check Azure Function Logs for more information."
-        });
     }
 }
