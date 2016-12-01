@@ -11,7 +11,7 @@ public static void Run(string report, TraceWriter log)
     string toEmail = "volgaboatman@mail.ru";
     int smtpPort = 25; //587;
 
-    bool smtpEnableSsl = true;
+    bool smtpEnableSsl = false;
     string smtpHost = "smtp.bokov.net"; // your smtp host
     string smtpUser = "maria - hackfest@bokov.net"; // your smtp user
     string smtpPass = "puI83nd38"; // your smtp password
