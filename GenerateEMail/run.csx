@@ -6,6 +6,10 @@ public static void Run(string report, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {report}");
 
+    ServicePointManager.ServerCertificateValidationCallback =
+    delegate (object s, X509Certificate certificate,
+             X509Chain chain, SslPolicyErrors sslPolicyErrors)
+    { return true; };
 
     string fromEmail = "kirill@marya.ru";
     string toEmail = "volgaboatman@mail.ru";
