@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Mail;
-using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 
 public static void Run(string report, TraceWriter log)
 {
