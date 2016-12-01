@@ -57,13 +57,12 @@ public static void Run(string report, IQueryable<ReportFiles> tableBinding, Trac
         delegate (object s, X509Certificate certificate,
                 X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
 
-
     var client = new SmtpClient("smtp-mail.outlook.com", 587)
     {
-        Credentials = new NetworkCredential("maria-hack@outlook.com", "Maria123"),
         EnableSsl = true,
-        UseDefaultCredentials = false,
         DeliveryMethod = SmtpDeliveryMethod.Network,
+        UseDefaultCredentials = false,
+        Credentials = new NetworkCredential("maria-msft-hack@outlook.com", "MariaHack"),
     };
 
     string fromEmail = "kirill@marya.ru";
