@@ -30,7 +30,6 @@ public static void Run(string report, TraceWriter log)
 
     mail.Body = message;
 
-    log.Verbose(mail.ToSting());
     try
     {
         client.Send(mail);
