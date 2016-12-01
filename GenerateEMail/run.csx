@@ -53,6 +53,9 @@ public static void Run(string report, IQueryable<ReportFiles> tableBinding, Trac
         log.Info($"{entity.PartitionKey} - {entity.RowKey} url={entity.url}, mail={entity.OperatorMail}");
     }*/
 
+
+
+    /*
     ServicePointManager.ServerCertificateValidationCallback =
         delegate (object s, X509Certificate certificate,
                 X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
@@ -81,5 +84,5 @@ public static void Run(string report, IQueryable<ReportFiles> tableBinding, Trac
     catch (Exception ex)
     {
         log.Verbose(ex.ToString());
-    }
+    }*/
 }
