@@ -15,25 +15,18 @@ public static void Run(string report, TraceWriter log)
 
     string fromEmail = "kirill@marya.ru";
     string toEmail = "volgaboatman@mail.ru";
-    int smtpPort = 25; // 587
 
-    bool smtpEnableSsl = true;
-    string smtpHost = "smtp.bokov.net"; // your smtp host
-    string smtpUser = "bokov7"; // your smtp user
-    string smtpPass = "did9e0ev7sf7s"; // your smtp password
     string subject = "First email";
     string message = report;
 
     MailMessage mail = new MailMessage(fromEmail, toEmail);
-    SmtpClient client = new SmtpClient();
-    client.Port = smtpPort;
-    client.EnableSsl = smtpEnableSsl;
-    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-    client.UseDefaultCredentials = false;
-    client.Host = smtpHost;
-    client.Credentials = new System.Net.NetworkCredential(smtpUser, smtpPass);
-    mail.Subject = message;
 
+    var client = new SmtpClient("smtp-mail.outlook.com", 587)
+    {
+        Credentials = new NetworkCredential("maria-hack@outlook.com", "Maria123"),
+        EnableSsl = true
+    };
+    mail.Subject = message;
     mail.Body = message;
 
     try
