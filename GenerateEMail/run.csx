@@ -70,7 +70,7 @@ public static void Run(string report, IQueryable<ReportFiles> tableBinding, Trac
     {
         Subject = "Test",
         Body = "Report",
-    }
+    };
 
     try
     {
