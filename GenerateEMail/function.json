@@ -19,7 +19,7 @@
       "type": "table",
       "connection": "mariastorage2016_STORAGE",
       "tableName": "ReportStatus",
-      "direction": "out"
+      "direction": "in"
     }
   ],
   "disabled": false

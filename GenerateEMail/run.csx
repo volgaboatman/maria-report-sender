@@ -6,13 +6,12 @@ using System.Net;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
-public static void Run(string report, IQueryable<ReportFiles> reportBinding, ICollector<ReportStatus> statusBinding, TraceWriter log)
+public static void Run(string reportStatusPk, IQueryable<ReportFiles> reportBinding, IQueryable<ReportStatus> statusBinding, TraceWriter log)
 {
-    log.Info($"C# Queue trigger function processed: {report}");
-    foreach (ReportFiles files in reportBinding)
-    {
-        log.Info($"RowKey: {files.RowKey} FileName: ");
-    }
+    log.Info($"[GenerateEmail] Processing {reportStatusPk}");
+
+    ReportStatus files in statusBinding.Where(p => p.PartitionKey == reportStatusPk).ToList().SingleOrDefault();
+    log.Info($"RowKey: {files.RowKey} FileName: ");
 
     /*
     // Send Email
