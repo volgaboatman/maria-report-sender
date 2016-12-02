@@ -5,10 +5,11 @@
       "type": "httpTrigger",
       "direction": "in",
       "authLevel": "function",
-      "method": [ "POST" ]
+      "method": [ "POST" ],
+      "route": "status/{reportId:string}"
     },
     {
-      "name": "statusBinding",
+      "name": "statusTable",
       "type": "table",
       "connection": "mariastorage2016_STORAGE",
       "tableName": "ReportStatus",
