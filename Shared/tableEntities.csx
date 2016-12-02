@@ -5,12 +5,12 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.IdentityModel.Tokens;
 
-public static string EncodeReportId(strinf reportId)
+public static string EncodeReportId(string reportId)
 {
   return Base64UrlEncoder.Encode(reportId);
 }
 
-public static string DecodeReportId(strinf reportId)
+public static string DecodeReportId(string reportId)
 {
   return Base64UrlEncoder.Decode(reportId);
 }
