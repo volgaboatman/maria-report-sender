@@ -11,5 +11,5 @@ public class ReportFiles : TableEntity
 
 public class ReportStatus : TableEntity
 {
-    public string Status { get; set; }
+    public bool isOk { get; set; }
 }
