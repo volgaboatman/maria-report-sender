@@ -13,22 +13,8 @@ public const string ReportStatusRowKey = "Status";
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, string reportId, CloudTable statusTable, TraceWriter log)
 {
     log.Info($"Processing request. RequestUri='{req.RequestUri}'");
-
-    TableOperation operation = TableOperation.Retrieve<ReportStatus>(reportId, ReportStatusRowKey);
-    TableResult result = await statusTable.ExecuteAsync(operation);
-    ReportStatus reportStatus = (ReportStatus)result.Result;
-
-    if (reportStatus == null) {
-        reportStatus = new ReportStatus() { 
-            PartitionKey = reportId, 
-            RowKey = ReportStatusRowKey
-        };
-    }
-
-    reportStatus.isOk = false;
-
-    TableOperation insertOrReplaceOperation = TableOperation.InsertOrReplace(reportStatus);
-    await statusTable.ExecuteAsync(insertOrReplaceOperation);
+   
+    UpdateStatus(reportId, statusTable, false, TraceWriter log)
 
     return req.CreateResponse(HttpStatusCode.OK);
 }
