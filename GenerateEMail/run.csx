@@ -29,10 +29,10 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
         using (var client = new WebClient()) {
             client.DownloadFile(report, filename);
         }
-        attachments.Add(filename)
+        attachments.Add(filename);
     }
 
-    log.Info(String.Join(", ", attachments.ToArray());)
+    log.Info(String.Join(", ", attachments.ToArray()));
 
     // send email
 
