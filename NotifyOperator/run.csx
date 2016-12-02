@@ -24,7 +24,7 @@ public static async void Run(string reportId, IQueryable<ReportFiles> reportBind
 
     log.Info($"ErrorUrl: http://somthing.goes.wrong/?reportId=");
 
-    await UpdateStatus(reportId, statusTable, false, TraceWriter log);
+    await UpdateStatus(reportId, statusTable, false, log);
 
 //    waitQueue.Add(reportId);
     waitQueue.AddMessage(new CloudQueueMessage(reportId), null, new TimeSpan(0, 2, 0), null, null);
