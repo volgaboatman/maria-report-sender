@@ -10,7 +10,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 {
     log.Info($"Processing '{reportId}'");
 
-    reportId = "07:24:14.5321439"
+    reportId = "07:24:14.5321439";
     ReportStatus status = statusBinding.Where(p => p.PartitionKey == reportId).SingleOrDefault();
     if (status == null) {
         log.Error($"Unable to find status for '{reportId}'");
@@ -19,7 +19,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 
     log.Info($"Status for report '{reportId}': {status.isOk}");
     if (!status.isOk) {
-        return
+        return;
     }
 
     List<ReportFiles> reportFiles = reportBinding.Where(p => p.PartitionKey == reportId).ToList();
