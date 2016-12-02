@@ -1,0 +1,31 @@
+{
+  "bindings": [
+    {
+      "authLevel": "admin",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "$return",
+      "type": "http",
+      "direction": "out"
+    },
+     {
+      "name": "outputSbQueue",
+            "type": "serviceBus",
+            "queueName": "maria-queue",
+            "connection": "maria-sb-connection",
+            "direction": "out"
+  },
+          {
+      "tableName": "reportfiles",
+      "connection": "maria-storage-connection",
+      "name": "tableBinding",
+      "type": "table",
+      "direction": "out"
+    }
+
+  ],
+  "disabled": false
+}
