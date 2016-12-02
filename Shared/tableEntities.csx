@@ -14,6 +14,8 @@ public class ReportStatus : TableEntity
     public bool isOk { get; set; }
 }
 
+public const string ReportStatusRowKey = "Status";
+
 public static async void UpdateStatus(string reportId, CloudTable statusTable, bool status, TraceWriter log)
 {
     log.Info($"Update status {reportId} to {status}");
