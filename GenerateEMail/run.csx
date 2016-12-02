@@ -8,15 +8,29 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, IQueryable<ReportStatus> statusBinding, TraceWriter log)
 {
-    log.Info($"[GenerateEmail] Processing '{reportId}'");
+    log.Info($"Processing '{reportId}'");
 
-    ReportStatus status = statusBinding.Where(p => p.PartitionKey == reportId).ToList().SingleOrDefault();
+    reportId = "07:24:14.5321439"
+    ReportStatus status = statusBinding.Where(p => p.PartitionKey == reportId).SingleOrDefault();
     if (status == null) {
-        log.Error($"[GenerateEmail] Unable to find status for '{reportId}'");
+        log.Error($"Unable to find status for '{reportId}'");
         throw new ArgumentNullException("reportId");
     } 
 
-    log.Info($"RowKey: {status.RowKey} FileName: ");
+    log.Info($"Status for report '{reportId}': {status.isOk}");
+    if (!status.isOk) {
+        return
+    }
+
+    List<ReportFiles> reportFiles = reportBinding.Where(p => p.PartitionKey == reportId).ToList();
+
+    foreach (var report in reportFiles.Select(r => r.url).ToList()) {
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(report, "a.mpeg");
+        }
+    }
+    // download reports and send email
 
     /*
     // Send Email
