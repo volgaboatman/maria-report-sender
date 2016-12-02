@@ -7,12 +7,6 @@ using System.Net.Mail;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
-public class ReportFiles : TableEntity
-{
-    public string url { get; set; }
-    public string OperatorMail { get; set; }
-}
-
 public static void Run(string report, IQueryable<ReportFiles> tableBinding, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {report}");
