@@ -27,7 +27,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
     statusBinding.Add(new ReportStatus { PartitionKey = reportId, RowKey="status", isOk=true});
 
 //    waitQueue.Add(reportId);
-    waitQueue.AddMessage(reportId, null, new TimeSpan(0, 1, 0), null, null);
+    waitQueue.AddMessage(new CloudQueueMessage(reportId), null, new TimeSpan(0, 1, 0), null, null);
 /*
 public virtual void AddMessage(
     CloudQueueMessage message,
