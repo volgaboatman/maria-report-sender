@@ -1,5 +1,4 @@
 #r "Microsoft.WindowsAzure.Storage"
-#r "Microsoft.WindowsAzure.Storage.Queue"
 #load "../Shared/tableEntities.csx"
 
 using System;
