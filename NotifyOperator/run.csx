@@ -11,7 +11,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 {
     log.Info($"NotifyOperator  trigger function processed: {reportId}");
 
-    ReportFiles firstFile = reportBinding.Where(p => p.PartitionKey == reportId).ToList().SingleOrDefault();
+    ReportFiles firstFile = reportBinding.Where(p => p.PartitionKey == reportId).ToList().FirstOrDefault();
     if (firstFile == null) {
         log.Error($"[NotifyOperator] Unable to find reports for '{reportId}'");
         throw new ArgumentNullException("reportId");
