@@ -6,7 +6,7 @@
       "direction": "in",
       "authLevel": "function",
       "method": [ "POST" ],
-      "route": "status/{reportId:string}"
+      "route": "status/{reportId:alpha}"
     },
     {
       "name": "statusTable",
