@@ -24,7 +24,7 @@ public static async Task Run(string reportId, IQueryable<ReportFiles> reportBind
         log.Info($"RowKey: {file.PartitionKey} FileName: {file.RowKey} url: {file.url}");
     }
 
-    var encoded = WebUtility.UrlEncode(reportId); 
+    var encoded = EncodeReportId(reportId); 
     log.Info($"ErrorUrl: https://maria-function-email.azurewebsites.net/api/status/{encoded}?code=ypZAlNP81P7PlapSx06CtefY6vhH0nF0VPfoZKJlD55r46TbSlofUg==");
 
     await UpdateStatus(reportId, statusTable, true, log);

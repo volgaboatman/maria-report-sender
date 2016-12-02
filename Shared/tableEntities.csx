@@ -1,7 +1,20 @@
 #r "Microsoft.WindowsAzure.Storage"
+#r "Microsoft.IdentityModel";
 
 using Microsoft.WindowsAzure.Storage; 
 using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.IdentityModel.Tokens;
+
+public static string EncodeReportId(strinf reportId)
+{
+  return Base64UrlEncoder.Encode(reportId);
+}
+
+public static string DecodeReportId(strinf reportId)
+{
+  return Base64UrlEncoder.Decode(reportId);
+}
+
 
 public class ReportFiles : TableEntity
 {
