@@ -12,7 +12,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, string
 {
     log.Info($"Processing request. RequestUri='{req.RequestUri}'");
    
-    UpdateStatus(reportId, statusTable, false, log)
+    UpdateStatus(reportId, statusTable, false, log);
 
     return req.CreateResponse(HttpStatusCode.OK);
 }
