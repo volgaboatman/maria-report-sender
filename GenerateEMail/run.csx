@@ -9,7 +9,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 public static void Run(string report, IQueryable<ReportFiles> reportBinding, ICollector<ReportStatus> statusBinding, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {report}");
-    foreach (ReportFiles files in tableBinding)
+    foreach (ReportFiles files in reportBinding)
     {
         log.Info($"RowKey: {files.RowKey} FileName: ");
     }
