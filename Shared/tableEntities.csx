@@ -1,5 +1,5 @@
 #r "Microsoft.WindowsAzure.Storage"
-#r "Microsoft.IdentityModel";
+#r "Microsoft.IdentityModel.Tokens";
 
 using Microsoft.WindowsAzure.Storage; 
 using Microsoft.WindowsAzure.Storage.Table;
