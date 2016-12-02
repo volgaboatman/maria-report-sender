@@ -8,9 +8,13 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, IQueryable<ReportStatus> statusBinding, TraceWriter log)
 {
-    log.Info($"[GenerateEmail] Processing {reportId}");
+    log.Info($"[GenerateEmail] Processing '{reportId}')";
 
-    ReportStatus files = statusBinding.Where(p => p.PartitionKey == reportId).ToList().SingleOrDefault();
+    ReportStatus status = statusBinding.Where(p => p.PartitionKey == reportId).ToList().SingleOrDefault();
+    if (status == null) {
+        log.Info($"[GenerateEmail] Unable to find status for '{reportId}'");
+    }
+    
     log.Info($"RowKey: {files.RowKey} FileName: ");
 
     /*
