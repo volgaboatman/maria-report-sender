@@ -1,13 +1,11 @@
 #r "Microsoft.WindowsAzure.Storage"
+#load "..\Shared\tableEntities.csx"
 
 using System;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
-using Microsoft.Azure; // Namespace for CloudConfigurationManager
-using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
-using Microsoft.WindowsAzure.Storage.Table; // Namespace for Table storage types
 
 public class ReportFiles : TableEntity
 {
@@ -15,11 +13,10 @@ public class ReportFiles : TableEntity
     public string OperatorMail { get; set; }
 }
 
-public calss ReportStatus : TableEntity
+public class ReportStatus : TableEntity
 {
     public string Status { get; set; }
 }
- 
 
 public static void Run(string report, IQueryable<ReportFiles> reportBinding, ICollector<ReportStatus> statusBinding, TraceWriter log)
 {
