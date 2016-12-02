@@ -19,13 +19,16 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, string
     ReportStatus reportStatus = (ReportStatus)result.Result;
 
     if (reportStatus == null) {
-        reportStatus = new ReportStatus(reportId, ReportStatusRowKey);
+        reportStatus = new ReportStatus() { 
+            PartitionKey = reportId, 
+            RowKey = ReportStatusRowKey
+        };
     }
 
     reportStatus.isOk = false;
 
-    TableOperation insertOrReplaceOperation = TableOperation.InsertOrReplace(updateEntity);
-    await table.ExecuteAsync(insertOrReplaceOperation);
+    TableOperation insertOrReplaceOperation = TableOperation.InsertOrReplace(reportStatus);
+    await statusTable.ExecuteAsync(insertOrReplaceOperation);
 
     return req.CreateResponse(HttpStatusCode.OK);
 }
