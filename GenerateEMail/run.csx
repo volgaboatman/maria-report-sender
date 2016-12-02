@@ -37,8 +37,6 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 
     log.Info("Attachments: " + String.Join(", ", attachments.ToArray()));
 
-    // send email
-
     /*
     // Send Email
     var client = new SmtpClient("smtp-mail.outlook.com", 587)

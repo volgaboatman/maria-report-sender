@@ -1,0 +1,19 @@
+{
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in",
+      "authLevel": "function",
+      "method": [ "POST" ]
+    },
+    {
+      "name": "statusBinding",
+      "type": "table",
+      "connection": "mariastorage2016_STORAGE",
+      "tableName": "ReportStatus",
+      "direction": "in"
+    }
+  ],
+  "disabled": false
+}
