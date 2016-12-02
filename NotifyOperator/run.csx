@@ -7,7 +7,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Queue;
 
-public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, CloudTable statusTable, CloudQueue waitQueue, TraceWriter log)
+public static async void Run(string reportId, IQueryable<ReportFiles> reportBinding, CloudTable statusTable, CloudQueue waitQueue, TraceWriter log)
 {
     log.Info($"NotifyOperator  trigger function processed: {reportId}");
 
@@ -24,7 +24,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, C
 
     log.Info($"ErrorUrl: http://somthing.goes.wrong/?reportId=");
 
-    UpdateStatus(reportId, statusTable, false, TraceWriter log)
+    await UpdateStatus(reportId, statusTable, false, TraceWriter log)
 
 //    waitQueue.Add(reportId);
     waitQueue.AddMessage(new CloudQueueMessage(reportId), null, new TimeSpan(0, 2, 0), null, null);

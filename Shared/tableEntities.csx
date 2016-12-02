@@ -14,9 +14,9 @@ public class ReportStatus : TableEntity
     public bool isOk { get; set; }
 }
 
-public static void UpdateStatus(string reportId, CloudTable statusTable, bool status, TraceWriter log)
+public static async void UpdateStatus(string reportId, CloudTable statusTable, bool status, TraceWriter log)
 {
-    log.Info($"Update status {reportIt} to {status}");
+    log.Info($"Update status {reportId} to {status}");
 
     TableOperation operation = TableOperation.Retrieve<ReportStatus>(reportId, ReportStatusRowKey);
     TableResult result = await statusTable.ExecuteAsync(operation);

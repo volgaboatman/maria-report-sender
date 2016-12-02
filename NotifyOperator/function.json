@@ -15,7 +15,7 @@
       "direction": "in"
     },
     {
-      "name": "statusBinding",
+      "name": "statusTable",
       "type": "table",
       "connection": "mariastorage2016_STORAGE",
       "tableName": "ReportStatus",
