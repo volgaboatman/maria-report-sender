@@ -15,12 +15,12 @@
       "name": "outputSbQueue",
             "type": "serviceBus",
             "queueName": "maria-queue",
-            "connection": "maria-sb-connection",
+            "connection": "mariastorage2016_STORAGE",
             "direction": "out"
   },
           {
       "tableName": "reportfiles",
-      "connection": "maria-storage-connection",
+      "connection": "mariastorage2016_STORAGE",
       "name": "tableBinding",
       "type": "table",
       "direction": "out"
