@@ -12,10 +12,11 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 
     ReportStatus status = statusBinding.Where(p => p.PartitionKey == reportId).ToList().SingleOrDefault();
     if (status == null) {
-        log.Info($"[GenerateEmail] Unable to find status for '{reportId}'");
-    }
+        log.Error($"[GenerateEmail] Unable to find status for '{reportId}'");
+        throw new ArgumentNullException("reportId")
+    } 
 
-    log.Info($"RowKey: {files.RowKey} FileName: ");
+    log.Info($"RowKey: {status.RowKey} FileName: ");
 
     /*
     // Send Email
