@@ -3,6 +3,7 @@
 
 using System;
 using System.Net;
+using System.Web;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -24,12 +25,14 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 
     List<ReportFiles> reportFiles = reportBinding.Where(p => p.PartitionKey == reportId).ToList();
     List<string> attachments = new List<string>();
-    foreach (var report in reportFiles.Select(r => r.url).ToList()) {
-        var filename = Path.GetTempFileName(); 
+    foreach (var url in reportFiles.Select(r => r.url).ToList()) {
+        string filename = Path.GetFileName(new Uri(url).AbsolutePath);
+        string filepath = Path.Combine(Path.GetTempPath(), filename);
+
         using (var client = new WebClient()) {
-            client.DownloadFile(report, filename);
+            client.DownloadFile(url, filepath);
         }
-        attachments.Add(filename);
+        attachments.Add(filepath);
     }
 
     log.Info(String.Join(", ", attachments.ToArray()));
