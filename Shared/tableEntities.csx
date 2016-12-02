@@ -21,8 +21,7 @@ public static async Task UpdateStatus(string reportId, CloudTable statusTable, b
     log.Info($"Update status {reportId} to {status}");
 
     TableOperation operation = TableOperation.Retrieve<ReportStatus>(reportId, ReportStatusRowKey);
-    TableResult result = await statusTable.ExecuteAsync(operation);
-    ReportStatus reportStatus = (ReportStatus)result.Result;
+    ReportStatus reportStatus = await statusTable.ExecuteAsync(operation).Result;
 
     if (reportStatus == null) {
         reportStatus = new ReportStatus() { 
