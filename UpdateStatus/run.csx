@@ -15,10 +15,8 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, string
     log.Info($"Processing request. RequestUri='{req.RequestUri}'");
 
     TableOperation operation = TableOperation.Retrieve<ReportStatus>(reportId, ReportStatusRowKey);
-    TableResult result = statusTable.Execute(operation);
+    TableResult result = await statusTable.ExecuteAsync(operation);
     ReportStatus reportStatus = (ReportStatus)result.Result;
-
-    log.Verbose($"{person.Name} is {person.Status}");
 
     if (reportStatus == null) {
         reportStatus = new ReportStatus(reportId, ReportStatusRowKey);
@@ -27,7 +25,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, string
     reportStatus.isOk = false;
 
     TableOperation insertOrReplaceOperation = TableOperation.InsertOrReplace(updateEntity);
-    table.Execute(insertOrReplaceOperation);
+    await table.ExecuteAsync(insertOrReplaceOperation);
 
     return req.CreateResponse(HttpStatusCode.OK);
 }
