@@ -18,14 +18,14 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 
     foreach (var file in reportBinding.Where(p => p.PartitionKey == reportId))
     {
-        log.Info($"RowKey: {file.Partition} FileName: {file.RowKey} url: {file.url}");
+        log.Info($"RowKey: {file.PartitionKey} FileName: {file.RowKey} url: {file.url}");
     }
 
     log.Info($"ErrorUrl: http://somthing.goes.wrong/");
 
     statusBinding.Add(new ReportStatus { PartitionKey = reportId, RowKey="status", isOk=true});
 
-    waitQueue.Add(reportId, null, new TimeSpan(0, 1, 0), null, null);
+//    waitQueue.Add(reportId, null, new TimeSpan(0, 1, 0), null, null);
 /*
 public virtual void AddMessage(
     CloudQueueMessage message,
