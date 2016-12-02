@@ -23,14 +23,18 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
     }
 
     List<ReportFiles> reportFiles = reportBinding.Where(p => p.PartitionKey == reportId).ToList();
-
+    List<string> attachments = new List<string>();
     foreach (var report in reportFiles.Select(r => r.url).ToList()) {
-        using (var client = new WebClient())
-        {
-            client.DownloadFile(report, Path.GetTempFileName());
+        var filename = Path.GetTempFileName(); 
+        using (var client = new WebClient()) {
+            client.DownloadFile(report, filename);
         }
+        attachments.Add(filename)
     }
-    // download reports and send email
+
+    log.Info(String.Join(", ", attachments.ToArray());)
+
+    // send email
 
     /*
     // Send Email
