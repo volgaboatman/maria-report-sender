@@ -10,7 +10,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 {
     log.Info($"[GenerateEmail] Processing {reportStatusPk}");
 
-    ReportStatus files = statusBinding.Where(p => p.PartitionKey == reportStatusPk).ToList().SingleOrDefault();
+    ReportStatus files = statusBinding.Where(p => p.PartitionKey == reportId).ToList().SingleOrDefault();
     log.Info($"RowKey: {files.RowKey} FileName: ");
 
     /*
