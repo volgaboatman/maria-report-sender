@@ -16,7 +16,7 @@ public class ReportStatus : TableEntity
 
 public const string ReportStatusRowKey = "Status";
 
-public static async void UpdateStatus(string reportId, CloudTable statusTable, bool status, TraceWriter log)
+public static async Task UpdateStatus(string reportId, CloudTable statusTable, bool status, TraceWriter log)
 {
     log.Info($"Update status {reportId} to {status}");
 

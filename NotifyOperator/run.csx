@@ -7,7 +7,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Queue;
 
-public static async void Run(string reportId, IQueryable<ReportFiles> reportBinding, CloudTable statusTable, CloudQueue waitQueue, TraceWriter log)
+public static async Task Run(string reportId, IQueryable<ReportFiles> reportBinding, CloudTable statusTable, CloudQueue waitQueue, TraceWriter log)
 {
     log.Info($"NotifyOperator  trigger function processed: {reportId}");
 
