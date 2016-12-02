@@ -1,5 +1,6 @@
 #r "Microsoft.WindowsAzure.Storage"
 
+using System.Text;
 using Microsoft.WindowsAzure.Storage; 
 using Microsoft.WindowsAzure.Storage.Table;
 
