@@ -3,6 +3,7 @@
 
 using System;
 using System.Net;
+using System.Text;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Queue;
@@ -22,7 +23,7 @@ public static async Task Run(string reportId, IQueryable<ReportFiles> reportBind
         log.Info($"RowKey: {file.PartitionKey} FileName: {file.RowKey} url: {file.url}");
     }
 
-    log.Info($"ErrorUrl: https://maria-function-email.azurewebsites.net/api/status/{reportId}?code=ypZAlNP81P7PlapSx06CtefY6vhH0nF0VPfoZKJlD55r46TbSlofUg==");
+    log.Info($"ErrorUrl: https://maria-function-email.azurewebsites.net/api/status/{Convert.ToBase64String(reportId)}?code=ypZAlNP81P7PlapSx06CtefY6vhH0nF0VPfoZKJlD55r46TbSlofUg==");
 
     await UpdateStatus(reportId, statusTable, true, log);
 

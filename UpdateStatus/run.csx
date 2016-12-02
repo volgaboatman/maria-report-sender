@@ -3,6 +3,7 @@
 
 using System;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage; 
