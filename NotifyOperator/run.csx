@@ -6,7 +6,7 @@ using System.Net;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
-public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, ICollector<ReportStatus> statusBinding, ICollector<string> waitQueue, TraceWriter log)
+public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, ICollector<ReportStatus> statusBinding, CloudQueue waitQueue, TraceWriter log)
 {
     log.Info($"NotifyOperator  trigger function processed: {reportId}");
 
@@ -21,11 +21,12 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
         log.Info($"RowKey: {file.PartitionKey} FileName: {file.RowKey} url: {file.url}");
     }
 
-    log.Info($"ErrorUrl: http://somthing.goes.wrong/");
+    log.Info($"ErrorUrl: http://somthing.goes.wrong/?reportId=");
 
     statusBinding.Add(new ReportStatus { PartitionKey = reportId, RowKey="status", isOk=true});
 
-//    waitQueue.Add(reportId, null, new TimeSpan(0, 1, 0), null, null);
+//    waitQueue.Add(reportId);
+    waitQueue.Add(reportId, null, new TimeSpan(0, 1, 0), null, null);
 /*
 public virtual void AddMessage(
     CloudQueueMessage message,
