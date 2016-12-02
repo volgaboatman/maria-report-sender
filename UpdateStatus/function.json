@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "authLevel": "function",
-      "method": [ "POST" ],
+      "method": [ "GET" ],
       "route": "status/{reportId:alpha}"
     },
     {
