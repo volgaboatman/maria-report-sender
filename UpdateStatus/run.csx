@@ -13,8 +13,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, string
 {
     log.Info($"Processing request. RequestUri='{req.RequestUri}'");
    
-    byte[] reportIdByteArray = Convert.FromBase64String(reportIdBase64);
-    string reportId = Encoding.UTF8.GetString(reportIdByteArray);
+    reportId = WebUtility.UrlDecode(reportId); 
 
     log.Info($"Updating status. ReportId='{reportId}'");
 
