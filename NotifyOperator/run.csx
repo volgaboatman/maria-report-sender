@@ -11,7 +11,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 {
     log.Info($"NotifyOperator  trigger function processed: {reportId}");
 
-    ReportFiles firstFile = reportBinding.Where(p => p.PartitionKey == reportId).ToList().SingleOrDefault();
+    ReportFiles firstFile = reportBinding.Where(p => p.PartitionKey == reportId).ToList().FirstOrDefault();
     if (firstFile == null) {
         log.Error($"[NotifyOperator] Unable to find reports for '{reportId}'");
         throw new ArgumentNullException("reportId");
@@ -24,10 +24,10 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 
     log.Info($"ErrorUrl: http://somthing.goes.wrong/?reportId=");
 
-    statusBinding.Add(new ReportStatus { PartitionKey = reportId, RowKey="status", isOk=true});
+    statusBinding.InsertOrReplace(new ReportStatus { PartitionKey = reportId, RowKey="status", isOk=true});
 
 //    waitQueue.Add(reportId);
-    waitQueue.AddMessage(new CloudQueueMessage(reportId), null, new TimeSpan(0, 1, 0), null, null);
+    waitQueue.AddMessage(new CloudQueueMessage(reportId), null, new TimeSpan(0, 2, 0), null, null);
 /*
 public virtual void AddMessage(
     CloudQueueMessage message,
