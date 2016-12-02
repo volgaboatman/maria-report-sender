@@ -1,10 +1,12 @@
 #r "Microsoft.WindowsAzure.Storage"
+#r "Microsoft.WindowsAzure.Storage.Queue"
 #load "../Shared/tableEntities.csx"
 
 using System;
 using System.Net;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Queue;
 
 public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, ICollector<ReportStatus> statusBinding, CloudQueue waitQueue, TraceWriter log)
 {
