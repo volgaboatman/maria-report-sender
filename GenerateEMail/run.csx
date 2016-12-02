@@ -27,7 +27,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
     foreach (var report in reportFiles.Select(r => r.url).ToList()) {
         using (var client = new WebClient())
         {
-            client.DownloadFile(report, "a.mpeg");
+            client.DownloadFile(report, Path.GetTempFileName());
         }
     }
     // download reports and send email
