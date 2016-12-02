@@ -1,18 +1,30 @@
 #r "Microsoft.WindowsAzure.Storage"
-#r "Microsoft.IdentityModel";
 
 using Microsoft.WindowsAzure.Storage; 
 using Microsoft.WindowsAzure.Storage.Table;
-using Microsoft.IdentityModel.Tokens;
 
 public static string EncodeReportId(string reportId)
 {
-  return Base64UrlEncoder.Encode(reportId);
+    var sb = new StringBuilder();
+
+    var bytes = Encoding.Unicode.GetBytes(reportId);
+    foreach (var t in bytes)
+    {
+        sb.Append(t.ToString("X2"));
+    }
+
+    return sb.ToString(); 
 }
 
 public static string DecodeReportId(string reportId)
 {
-  return Base64UrlEncoder.Decode(reportId);
+    var bytes = new byte[reportId.Length / 2];
+        for (var i = 0; i < bytes.Length; i++)
+        {
+            bytes[i] = Convert.ToByte(reportId.Substring(i * 2, 2), 16);
+        }
+
+        return Encoding.Unicode.GetString(bytes); 
 }
 
 
