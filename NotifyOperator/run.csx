@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
 
 public static void Run(string report, IQueryable<ReportFiles> tableBinding, TraceWriter log)
 {
