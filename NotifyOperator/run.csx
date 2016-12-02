@@ -15,18 +15,12 @@ public class ReportFiles : TableEntity
     public string OperatorMail { get; set; }
 }
 
-public calss ReportStatus : TableEntity
-{
-    public string Status { get; set; }
-}
- 
-
-public static void Run(string report, IQueryable<ReportFiles> reportBinding, ICollector<ReportStatus> statusBinding, TraceWriter log)
+public static void Run(string report, IQueryable<ReportFiles> tableBinding, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {report}");
     foreach (ReportFiles files in tableBinding)
     {
-        log.Info($"RowKey: {files.RowKey} FileName: ");
+        log.Info($"RowKey: {files.RowKey}");
     }
 /*
     CloudStorageAccount storageAccount;

@@ -4,22 +4,15 @@
       "name": "report",
       "type": "queueTrigger",
       "direction": "in",
-      "queueName": "wait-for-confirmation",
+      "queueName": "reports-ready",
       "connection": "mariastorage2016_STORAGE"
     },
     {
-      "name": "reportBinding",
+      "name": "tableBinding",
       "type": "table",
       "connection": "mariastorage2016_STORAGE",
       "tableName": "reportfiles",
       "direction": "in"
-    },
-    {
-      "name": "statusBinding",
-      "type": "table",
-      "connection": "mariastorage2016_STORAGE",
-      "tableName": "ReportStatus",
-      "direction": "out"
     }
   ],
   "disabled": false
