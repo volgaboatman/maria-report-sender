@@ -35,7 +35,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
         attachments.Add(filepath);
     }
 
-    log.Info($"Attachments: {String.Join(", ", attachments.ToArray()}"));
+    log.Info("Attachments: " + String.Join(", ", attachments.ToArray()));
 
     // send email
 
