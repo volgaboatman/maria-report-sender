@@ -11,7 +11,6 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 {
     log.Info($"Processing '{reportId}'");
 
-    reportId = "07:24:14.5321439";
     ReportStatus status = statusBinding.Where(p => p.PartitionKey == reportId).SingleOrDefault();
     if (status == null) {
         log.Error($"Unable to find status for '{reportId}'");
@@ -29,6 +28,7 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
         string filename = Path.GetFileName(new Uri(url).AbsolutePath);
         string filepath = Path.Combine(Path.GetTempPath(), filename);
 
+        log.Info($"Downloading '{url}' to '{filepath}'");
         using (var client = new WebClient()) {
             client.DownloadFile(url, filepath);
         }
