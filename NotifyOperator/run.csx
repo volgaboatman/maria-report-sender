@@ -25,10 +25,10 @@ public static void Run(string reportId, IQueryable<ReportFiles> reportBinding, I
 
     log.Info($"ErrorUrl: http://somthing.goes.wrong/?reportId=");
 
-    statusBinding.AddMessage(new ReportStatus { PartitionKey = reportId, RowKey="status", isOk=true});
+    statusBinding.Add(new ReportStatus { PartitionKey = reportId, RowKey="status", isOk=true});
 
 //    waitQueue.Add(reportId);
-    waitQueue.Add(reportId, null, new TimeSpan(0, 1, 0), null, null);
+    waitQueue.AddMessage(reportId, null, new TimeSpan(0, 1, 0), null, null);
 /*
 public virtual void AddMessage(
     CloudQueueMessage message,
