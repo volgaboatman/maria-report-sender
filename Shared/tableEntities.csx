@@ -20,12 +20,12 @@ public static string EncodeReportId(string reportId)
 public static string DecodeReportId(string reportId)
 {
     var bytes = new byte[reportId.Length / 2];
-        for (var i = 0; i < bytes.Length; i++)
-        {
-            bytes[i] = Convert.ToByte(reportId.Substring(i * 2, 2), 16);
-        }
+    for (var i = 0; i < bytes.Length; i++)
+    {
+        bytes[i] = Convert.ToByte(reportId.Substring(i * 2, 2), 16);
+    }
 
-        return Encoding.Unicode.GetString(bytes); 
+    return Encoding.Unicode.GetString(bytes); 
 }
 
 

@@ -6,7 +6,7 @@
       "direction": "in",
       "authLevel": "function",
       "method": [ "GET" ],
-      "route": "status/{reportIdBase64:alpha}"
+      "route": "status/{reportIdBase64}"
     },
     {
       "name": "statusTable",
