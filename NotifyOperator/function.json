@@ -1,18 +1,32 @@
 {
   "bindings": [
     {
-      "name": "report",
+      "name": "reportId",
       "type": "queueTrigger",
       "direction": "in",
       "queueName": "reports-ready",
       "connection": "mariastorage2016_STORAGE"
     },
     {
-      "name": "tableBinding",
+      "name": "reportBinding",
       "type": "table",
       "connection": "mariastorage2016_STORAGE",
       "tableName": "reportfiles",
       "direction": "in"
+    },
+    {
+      "name": "statusBinding",
+      "type": "table",
+      "connection": "mariastorage2016_STORAGE",
+      "tableName": "ReportStatus",
+      "direction": "out"
+    },
+    {
+      "name": "waitQueue",
+      "queueName": "wait-for-confirmation",
+      "connection": "mariastorage2016_STORAGE",
+      "type": "queue",
+      "direction": "out"
     }
   ],
   "disabled": false
