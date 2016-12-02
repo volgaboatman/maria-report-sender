@@ -4,15 +4,14 @@
 using System;
 using System.Net;
 using System.Web;
+using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
-using System.Net;
-using System.Threading.Tasks;
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, IQueryable<ReportStatus> statusBinding, TraceWriter log)
 {
     log.Info($"Processing request. RequestUri='{req.RequestUri}'");
 
-    req.CreateResponse(HttpStatusCode.OK);
+    return req.CreateResponse(HttpStatusCode.OK);
 }
